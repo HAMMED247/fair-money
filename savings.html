@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./download-removebg-preview.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+    <title>fairmoney</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: "Inter", sans-serif;
+        }
+        body{
+            transition: 0.9s ease-in-out;
+            width: 100%;
+            height: 100vh;
+            background-color: white;
+            color: #2b2b2b;
+        }
+        body.dark-mode{
+            background-color: #1b1b1b;
+            color: #e0e0e0;
+        }
+        .topbar{
+            display: flex;
+            
+            /* gap: 10px; */
+            
+            width: 100%;
+            height: 97px;
+            background-color: white;
+            transition: all 0.5s ease-in-out;
+            border-bottom: 1px solid grey;
+        }
+        .topbar.dark-mode{
+            background-color: #2a2a2a;
+            border-bottom-color: #444;
+        }
+        .topbar-left{
+            /* width: 311px; */
+            align-items: center;
+             padding: 1em 1em 1em 0;
+            border-right: 1px solid gray;
+            transition: all 0.5s ease-in-out;
+        }
+        .topbar-left.dark-mode{
+            border-right-color: #444;
+        }
+        img{
+            max-width: 50%;
+            max-height: 50%;
+        }
+        
+        h1{
+            display: inline;
+            text-transform: capitalize;
+            font-size: 20px;
+            transition: all 0.5s ease-in-out;
+        }
+        h1.dark-mode{
+            color: #e0e0e0;
+        }
+        h2{
+            padding-left: 1em;
+            font-size: 12px;
+            font-weight: 900;
+            text-transform: uppercase;
+            color: gray;
+            margin-right: 20px;
+            transition: all 0.5s ease-in-out;
+        }
+        h2.dark-mode{
+            color: #888;
+        }
+        p{
+            text-transform: capitalize;
+            font-size: 30px;
+            font-weight: 600;
+            margin-top: 1.2em;
+            margin-left: 1em;
+            transition: all 0.5s ease-in-out;
+        }
+        p.dark-mode{
+            color: #e0e0e0;
+        }
+        .outer-btn{
+            
+            width: 50px;
+            height: 30px;
+            border: 2px solid #2b2b2b;
+            border-radius: 15px;
+            margin-top: 1.5em;
+            margin-left: auto;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            cursor: pointer;
+            background-color: lightgray;
+            position: relative;
+            transition: all 0.5s ease-in-out;
+            padding: 0;
+        }
+        .outer-btn.dark-mode{
+            background-color: #444;
+            border-color: #e0e0e0;
+        }
+         .inner-btn{
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            border: none;
+            background: #fff;
+            position: absolute;
+            top: 1px;
+            left: 2px;
+            transition: all 0.5s ease-in-out;
+        }
+        .inner-btn.dark-mode{
+            background-color: #1b1b1b;
+        }
+        .notification{
+            position: relative;
+            margin: 1em;
+            padding-top: 0.5em;
+            transition: all 0.5s ease-in-out;
+        }
+        i{
+            font-size: 30px;
+            color: grey;
+            transition: all 0.5s ease-in-out;
+        }
+        i.dark-mode{
+            color: #999;
+        }
+        .count{
+            width: 5px;
+            height: 5px;
+            background-color: black;
+            display: flex;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            position: absolute;
+            top: 8px;
+            right: 1px;
+            z-index: 99;
+        }
+        .circle{
+            width: 40px;
+            height: 40px;
+            background-color: green;
+            border-radius: 50%;
+            margin: 1.5em 1.5em 0 0;
+            transition: all 0.5s ease-in-out;
+        }
+        .circle.dark-mode{
+            background-color: #1a7a1a;
+        }
+        .sidebar{
+            width: 278px;
+            height: 90vh;
+            position:relative;
+            border-right: 1px solid gray;
+            display: flex;
+            flex-direction: column;
+            padding-left: 3em;
+            text-decoration: none;
+            gap: 2em;
+            overflow-y: auto;
+            background-color: white;
+            transition: all 0.5s ease-in-out;
+            scrollbar-width: none;
+        }
+        .sidebar::-webkit-scrollbar{
+            display: none;
+        }
+        .sidebar.dark-mode{
+            background-color: #2a2a2a;
+            border-right-color: #444;
+        }
+        .links a{
+            display: flex;
+            color: black;
+            gap:1em;
+            margin: 2em 2em 2em 0.1em ;
+            font-size: 20px;
+            text-decoration: none;
+            transition: all 0.5s ease-in-out;
+        }
+        .links a.dark-mode{
+            color: #e0e0e0;
+        }
+        .chat a {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 2em;
+            color: black;
+            font-size: 20px;
+            text-decoration: none;
+            transition: all 0.5s ease-in-out;
+        }
+        .chat a.dark-mode{
+            color: #e0e0e0;
+        }
+        .chat{
+            position: relative;
+            top: 25%;
+            left: 10%;
+        }
+        .chat .outer-btn{
+            margin-left: 0;
+            margin-top: 1.5em;
+            width: 50px;
+            height: 30px;
+        }
+        .main{
+            display: flex;
+        }   
+        .body{
+            height: 75%;
+            flex: 1;
+            background-color: #f5f5f5;
+            transition: all 0.5s ease-in-out;
+            overflow-y: auto;
+            scrollbar-width: none;
+        }
+        .body::-webkit-scrollbar{
+            display: none;
+        }
+        .body.dark-mode{
+            background-color: #1b1b1b;
+        }
+        .exp{
+            font-size: 20px;
+            font-weight: 200;
+            margin: 2em;
+            text-transform: lowercase;
+            transition: all 0.5s ease-in-out;
+        }
+        .exp.dark-mode{
+            color: #e0e0e0;
+        }   
+        .container{
+            height: 50%;
+            display: flex;
+            gap: 2em;
+            /* margin: 2em; */
+            transition: all 0.5s ease-in-out;
+        }
+        .container.dark-mode{
+            background-color: #1b1b1b;
+        }
+        .money, .achieve{
+            /* background-color: RED; */
+            margin-left: 1em;
+            margin-right: 1em;
+            width: 50%;
+            height: 70%;
+            padding: 1em;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s ease-in-out;
+        }
+        .money.dark-mode, .achieve.dark-mode{
+            background-color: #2a2a2a;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+        .img{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+        .grow, .goal{
+            display: grid;
+            grid-template-columns: 2, 1fr;
+            align-items: center;
+            gap: 1em;
+            /* margin-left: 1em ; */
+            font-size: 16px;
+        }
+        .goal img, .grow img{
+            margin-right: 1em;
+        }
+        h3{
+            transition: all 0.5s ease-in-out;
+        }
+        h3.dark-mode{
+            color: #e0e0e0;
+        }
+        h4{
+            font-size: 12px;
+            color: gray;
+            font-weight: 400;
+            margin-top: 1em;
+            transition: all 0.5s ease-in-out;
+        }
+        h4.dark-mode{
+            color: #999;
+        }
+        h5{
+            color: black;
+            font-size: 15px;
+            font-weight: 600;
+            margin-top: 1em;
+            cursor: pointer;
+            transition: all 0.5s ease-in-out;
+        }
+        h5.dark-mode{
+            color: #e0e0e0;
+        }
+        .hamburger{
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            margin-right: 1em;
+        }
+        .hamburger span{
+            width: 25px;
+            height: 3px;
+            background-color: #2b2b2b;
+            border-radius: 2px;
+            transition: all 0.3s ease-in-out;
+        }
+        .hamburger.dark-mode span{
+            background-color: #e0e0e0;
+        }
+        .hamburger.active span:nth-child(1){
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+        .hamburger.active span:nth-child(2){
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3){
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+    </style>
+</head>
+<body>
+     <script src="btns.js"></script>
+    <!-- topbar -->
+     <div class="topbar">
+        
+        <img src="./download-removebg-preview.png" alt="fairmoney logo"width="50" height="50" style="vertical-align: middle;  margin-top: 1.3em; margin-left: 2em;">
+        <div class="topbar-left">
+        <h1>fairmoney</h1>
+        <h2>microfinance bank</h2>
+        </div>
+        <div class="topbar-right">
+            <p>savings</p>
+            </div>
+            <div class="hamburger" onclick="toggleSidebar();">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <button class="outer-btn topbar-btn" onclick="onAndOff();">
+                <div class="inner-btn"></div>
+            </button>
+            <div class="notification topbar-notification">
+                <i class="ri-notification-2-fill"></i>
+                <div class="count"></div>
+            </div>
+            
+            <div class="circle topbar-circle"></div>
+     </div>
+     <div class="main">
+     <!-- sidebar -->
+      <div class="sidebar">
+       
+        <div class="links">
+            <a href=""> <img src="./image/bank-line.svg" alt="" width="20">overview</a>
+            <a href=""><img src="./image/send-plane-line.svg" alt="" width="20">payments</a>
+            <a href="./index.html"><img src="./image/coins-line.svg" alt="" width="20">loans</a>
+            <a href=""> <img src="./image/database-2-line.svg" alt="" width="20">savings</a>
+            <a href=""> <img src="./image/secure-payment-line.svg" alt="" width="20">payment method</a>
+            <a href=""> <img src="./image/settings-2-line.svg" alt="" width="20">Settings</a>
+        </div>
+        <div class="chat">
+            <a href="">chat with efe!</a>
+            <a href="">log out</a>
+            
+        </div>
+      </div>
+      <div class="body">
+        <p class="exp">explore the savings options curated for you</p>
+        <div class="container">
+            <div class="money">
+              <h3>grow your money!</h3> 
+              <div class="img">
+               <div class="grow"><img src="./image/global-line.svg" alt="" width="40">easy withdrawal anytime</div>
+               <div class="grow"><img src="./image/square-root.svg" alt="" width="40">10% per annum</div>
+               <div class="grow"><img src="./image/shield-keyhole-line.svg" alt="" width="40">safe and secure</div>
+               <div class="grow"><img src="./image/home-8-line.svg" alt="" width="40">daily interest earnings</div>
+               <div class="grow"><img src="./image/database-2-line.svg" alt="" width="40">flexible and cost effective</div>
+               <div class="grow"><img src="./image/arrow-up-box-line.svg" alt="" width="40">no fees, reliable</div>
+               </div>
+               <p>fairsave</p>
+               <h4>when you think of a high interest saving account, fairsave stands as the ultimate savings platform for you. fairsave is our savings product designed to help people save and make money everyday.</h4>
+               <h5>explore ></h5>
+            </div>
+            <div class="achieve">
+                <h3>achieve your goals!</h3> 
+                <div class="img">
+                 <div class="goal"><img src="./image/timer-2-line.svg" alt="" width="40">24% interest rate per annum</div>
+                 <div class="goal"><img src="./image/calendar-2-line.svg" alt="" width="40">up to 7-730 days</div>
+                 <div class="goal"><img src="./image/lightbulb-line.svg" alt="" width="40">fixed deposit, high returns</div>
+                 <div class="goal"><img src="./image/scales-3-fill.svg" alt="" width="40">flexible tenures</div>
+                 <div class="goal"><img  src="./image/arrow-up-box-fill.svg" alt="" width="30">automatic withdrawal on maturity</div>
+                 <div class="goal"><img src="./image/multi-image-line.svg" alt="" width="30">multiple deposit plans</div>
+                 </div>
+                    <p>fairlock</p>
+                    <h4>fairlock is a fixed-term saving product that gives you the support you need to not only achieve your goal but achieve them faster. keep your funds safe and advantage of our high interest rates.</h4>
+                    <h5>explore ></h5>
+            </div>
+        </div>
+      </div>
+</body>
+</html>
